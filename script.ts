@@ -109,7 +109,6 @@ async function main() {
   apiKeyInput = document.getElementById('api-key') as HTMLInputElement;
   groqApiKeyInput = document.getElementById('groq-api-key') as HTMLInputElement;
   const toggleApiKeyButton = document.getElementById('toggle-api-key');
-  const groqApiKeyInput = document.getElementById('groq-api-key') as HTMLInputElement;
   const toggleGroqApiKeyButton = document.getElementById('toggle-groq-api-key');
   const uploadButton = document.getElementById('upload');
 

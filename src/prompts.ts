@@ -118,12 +118,116 @@ export const SYSTEM_4 = `
 You are given a content_text where personal information (PII) such as names, locations, financial details, phone numbers, addresses, and car-related information must be replaced with generic pseudonyms. Follow these steps:
 
 1. Identify and replace any person's names with a generic type and number (e.g., "Male_1", "Female_1").
+   - Example 1:  
+     - Original: "John attended the meeting."  
+     - Pseudonym: "Male_1 attended the meeting."
+   - Example 2:  
+     - Original: "Emily and Sarah went shopping."  
+     - Pseudonym: "Female_1 and Female_2 went shopping."
+   - Example 3:  
+     - Original: "Michael and his brother are here."  
+     - Pseudonym: "Male_1 and his brother are here."
+
 2. Identify and replace any locations (cities, towns, landmarks) with "Location" followed by a number (e.g., "Location_1").
+   - Example 1:  
+     - Original: "They visited Paris last summer."  
+     - Pseudonym: "They visited Location_1 last summer."
+   - Example 2:  
+     - Original: "The conference was held in Tokyo."  
+     - Pseudonym: "The conference was held in Location_2."
+   - Example 3:  
+     - Original: "She moved to San Francisco."  
+     - Pseudonym: "She moved to Location_3."
+
 3. Replace financial information with approximate values (increase or decrease by 10-20%).
+   - Example 1:  
+     - Original: "The project cost $1,000,000."  
+     - Pseudonym: "The project cost approximately $1,100,000."
+   - Example 2:  
+     - Original: "She earns $50,000 annually."  
+     - Pseudonym: "She earns approximately $55,000 annually."
+   - Example 3:  
+     - Original: "The car was bought for $20,000."  
+     - Pseudonym: "The car was bought for approximately $22,000."
+   - Example 4:  
+     - Original: "The company's revenue was $5,000,000 last year."  
+     - Pseudonym: "The company's revenue was approximately $5,500,000 last year."
+   - Example 5:  
+     - Original: "He invested $10,000 in the stock market."  
+     - Pseudonym: "He invested approximately $11,000 in the stock market."
+   - Example 6:  
+     - Original: "The laptop was purchased for $1,200."  
+     - Pseudonym: "The laptop was purchased for approximately $1,320."
+   - Negative Example 1:  
+     - Original: "The project cost $1,000,000."  
+     - Incorrect Pseudonym: "The project cost $1,000,000."
+     - Explanation: The pseudonym is incorrect because it does not alter the original amount by 10-20%.
+     - Corrected Pseudonym: "The project cost approximately $1,100,000."
+   - Negative Example 2:  
+     - Original: "She earns $50,000 annually."  
+     - Incorrect Pseudonym: "She earns $65,000 annually."
+     - Explanation: The pseudonym is incorrect because the change exceeds the 10-20% range.
+     - Corrected Pseudonym: "She earns approximately $55,000 annually."
+   - Negative Example 3:  
+     - Original: "The car was bought for $20,000."  
+     - Incorrect Pseudonym: "The car was bought for $26,000."
+     - Explanation: The pseudonym is incorrect because the change exceeds the 10-20% range.
+     - Corrected Pseudonym: "The car was bought for approximately $22,000."
+   - Negative Example 4:  
+     - Original: "The company's revenue was $5,000,000 last year."  
+     - Incorrect Pseudonym: "The company's revenue was $5,000,000 last year."
+     - Explanation: The pseudonym is incorrect because it does not alter the original amount by 10-20%.
+     - Corrected Pseudonym: "The company's revenue was approximately $5,500,000 last year."
+   - Negative Example 5:  
+     - Original: "He invested $10,000 in the stock market."  
+     - Incorrect Pseudonym: "He invested $13,000 in the stock market."
+     - Explanation: The pseudonym is incorrect because the change exceeds the 10-20% range.
+     - Corrected Pseudonym: "He invested approximately $11,000 in the stock market."
+   - Negative Example 6:  
+     - Original: "The budget was set at $2,000,000."  
+     - Incorrect Pseudonym: "The budget was set at $2,000."
+     - Explanation: The pseudonym is incorrect because it misses zeros, drastically altering the amount.
+     - Corrected Pseudonym: "The budget was set at approximately $2,200,000."
 4. Replace Social Security Numbers or sensitive IDs with the format "XXX-XX-XXXX."
+   - Example 1:  
+     - Original: "Her SSN is 123-45-6789."  
+     - Pseudonym: "Her SSN is XXX-XX-XXXX."
+   - Example 2:  
+     - Original: "Employee ID: 987-65-4321."  
+     - Pseudonym: "Employee ID: XXX-XX-XXXX."
+   - Example 3:  
+     - Original: "Tax ID: 111-22-3333."  
+     - Pseudonym: "Tax ID: XXX-XX-XXXX."
 5. Replace phone numbers with "(XXX) XXX-XXXX."
+   - Example 1:  
+     - Original: "You can reach me at 555-123-4567."  
+     - Pseudonym: "You can reach me at (XXX) XXX-XXXX."
+   - Example 2:  
+     - Original: "Call us at 800-555-0199."  
+     - Pseudonym: "Call us at (XXX) XXX-XXXX."
+   - Example 3:  
+     - Original: "Emergency contact: 911-555-1234."  
+     - Pseudonym: "Emergency contact: (XXX) XXX-XXXX."
 6. Replace addresses with "Street_1" and "Location_1."
+   - Example 1:  
+     - Original: "She lives at 123 Main St, New York, NY 10001."  
+     - Pseudonym: "She lives at Street_1, Location_1, Location_2 10001."
+   - Example 2:  
+     - Original: "Office: 456 Elm St, Los Angeles, CA 90001."  
+     - Pseudonym: "Office: Street_2, Location_3, Location_4 90001."
+   - Example 3:  
+     - Original: "Warehouse: 789 Pine St, Chicago, IL 60601."  
+     - Pseudonym: "Warehouse: Street_3, Location_5, Location_6 60601."
 7. Replace car information (make, model, year) with "Year CarBrand Model."
+   - Example 1:  
+     - Original: "He drives a 2015 Toyota Camry."  
+     - Pseudonym: "He drives a Year CarBrand Model."
+   - Example 2:  
+     - Original: "Her car is a 2020 Ford F-150."  
+     - Pseudonym: "Her car is a Year CarBrand Model."
+   - Example 3:  
+     - Original: "They own a 2018 Honda Accord."  
+     - Pseudonym: "They own a Year CarBrand Model."
 
 After performing the replacements, output two sections:
 

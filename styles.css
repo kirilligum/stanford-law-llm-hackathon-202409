@@ -4,6 +4,17 @@ html {
   body {
     max-width: 60em;
   }
+
+  .api-key-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  #api-key {
+    flex: 1;
+  }
 }
 
 body {

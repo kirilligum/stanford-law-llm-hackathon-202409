@@ -9,7 +9,6 @@ import { customElement, state, query } from 'lit/decorators.js';
 // import '@vaadin/tabs';
 // import '@vaadin/tabsheet';
 
-const API_KEY = '';
 
 const SYSTEM = {
   role: 'system',
@@ -28,7 +27,7 @@ async function callChatGPT(text, system = SYSTEM) {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${API_KEY}`,
+      Authorization: `Bearer ${apiKeyInput.value}`,
     },
     body: JSON.stringify({
       model: 'gpt-4o',
@@ -83,7 +82,19 @@ async function main() {
   const afterText2 = document.getElementById('text-after-2');
   const replacementsText = document.getElementById('text-replacements');
 
+  const apiKeyInput = document.getElementById('api-key') as HTMLInputElement;
+  const toggleApiKeyButton = document.getElementById('toggle-api-key');
   const uploadButton = document.getElementById('upload');
+
+  toggleApiKeyButton.addEventListener('click', () => {
+    if (apiKeyInput.type === 'password') {
+      apiKeyInput.type = 'text';
+      toggleApiKeyButton.textContent = 'Hide Key';
+    } else {
+      apiKeyInput.type = 'password';
+      toggleApiKeyButton.textContent = 'Show Key';
+    }
+  });
   const anonymizeButton = document.getElementById('anonymize');
   const pasteButton = document.getElementById('paste');
   const copyButton = document.getElementById('copy-after');

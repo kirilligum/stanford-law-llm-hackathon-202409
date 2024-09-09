@@ -3,11 +3,11 @@ import { SYSTEM_4 } from './src/prompts';
 import { html, css, LitElement } from 'lit';
 import { customElement, state, query } from 'lit/decorators.js';
 
-import '@vaadin/button';
-import '@vaadin/icon';
-import '@vaadin/icons';
-import '@vaadin/tabs';
-import '@vaadin/tabsheet';
+// import '@vaadin/button';
+// import '@vaadin/icon';
+// import '@vaadin/icons';
+// import '@vaadin/tabs';
+// import '@vaadin/tabsheet';
 
 const API_KEY = '';
 

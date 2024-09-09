@@ -1,4 +1,5 @@
 import { SYSTEM_4 } from './src/prompts';
+import Groq from "groq-sdk";
 
 import { html, css, LitElement } from 'lit';
 import { customElement, state, query } from 'lit/decorators.js';
@@ -46,6 +47,24 @@ async function callChatGPT(text, system = SYSTEM) {
   return data.choices[0].message.content;
 }
 
+async function getGroqChatCompletion() {
+  const groq = new Groq({ apiKey: groqApiKeyInput.value });
+  return groq.chat.completions.create({
+    messages: [
+      {
+        role: "user",
+        content: "Explain the importance of fast language models",
+      },
+    ],
+    model: "llama3-8b-8192",
+  });
+}
+
+async function mainGroq() {
+  const chatCompletion = await getGroqChatCompletion();
+  console.log(chatCompletion.choices[0]?.message?.content || "");
+}
+
 async function callLlama(text) {
   const request = await fetch('http://192.168.1.123:11434/api/generate', {
     method: 'POST',
@@ -84,7 +103,19 @@ async function main() {
 
   const apiKeyInput = document.getElementById('api-key') as HTMLInputElement;
   const toggleApiKeyButton = document.getElementById('toggle-api-key');
+  const groqApiKeyInput = document.getElementById('groq-api-key') as HTMLInputElement;
+  const toggleGroqApiKeyButton = document.getElementById('toggle-groq-api-key');
   const uploadButton = document.getElementById('upload');
+
+  toggleGroqApiKeyButton.addEventListener('click', () => {
+    if (groqApiKeyInput.type === 'password') {
+      groqApiKeyInput.type = 'text';
+      toggleGroqApiKeyButton.textContent = 'Hide Key';
+    } else {
+      groqApiKeyInput.type = 'password';
+      toggleGroqApiKeyButton.textContent = 'Show Key';
+    }
+  });
 
   toggleApiKeyButton.addEventListener('click', () => {
     if (apiKeyInput.type === 'password') {

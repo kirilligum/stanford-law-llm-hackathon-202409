@@ -5,6 +5,17 @@ html {
     max-width: 60em;
   }
 
+  .groq-api-key-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  #groq-api-key {
+    flex: 1;
+  }
+
   .api-key-container {
     display: flex;
     align-items: center;

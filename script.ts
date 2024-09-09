@@ -71,29 +71,24 @@ async function mainGroq(text, system = SYSTEM) {
 }
 
 async function callLlama(text) {
-  const request = await fetch('http://192.168.1.123:11434/api/generate', {
+  const request = await fetch('https://api.groq.com/openai/v1/chat/completions', {
     method: 'POST',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${API_KEY}`,
+      Authorization: `Bearer ${groqApiKeyInput.value}`,
     },
     body: JSON.stringify({
-      model: 'llama3p1',
-      prompt: SYSTEM_4 + '\n' + text,
-      // SYSTEM,
-      // {
-      //   role: 'user',
-      //   content: text,
-      // },
-      // ],
-      stream: false,
+      "model": "llama3-8b-8192",
+      "messages": [
+        { "role": "user", "content": SYSTEM_4 + '\n' + text },
+      ],
     }),
   });
   const data = await request.json();
   console.log('Data', data);
-  return data.response;
-  // return data.choices[0].message.content;
+  // return data.response;
+  return data.choices[0].message.content;
 }
 
 let json: any = null;
@@ -242,7 +237,7 @@ export class MyApp extends LitElement {
   override render() {
     return html`<header>
         <img src="/theveil.png" />
-        <div>Veil</div>
+        <div>Local Privacy for Any LLM</div>
       </header>
       <main>
         <section>
@@ -356,10 +351,13 @@ export class MyApp extends LitElement {
       anonymizeButton.textContent = 'Working...';
       const text = beforeText.value;
       // const anonymized = await callChatGPT(text);
-      const anonymized = await mainGroq(text);
-      // const anonymized = await callLlama(text);
+      // const anonymized = await mainGroq(text);
+      const anonymized = await callLlama(text);
 
-      const [altered, table] = anonymized.split('REPLACEMENT_TABLE');
+      const [t1, t2] = anonymized.split('ALTERED_TEXT');
+      const [altered, table_long] = t2.split('REPLACEMENT_TABLE');
+      const table = table_long.substring(0, table_long.lastIndexOf(']') + 1);
+
 
       // const anonymized = await chrome.runtime.sendMessage({
       //   type: 'anonymize',

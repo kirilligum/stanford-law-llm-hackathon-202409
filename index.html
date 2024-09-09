@@ -1,25 +1,28 @@
 <html>
-  <head>
-    <link rel="stylesheet" href="sakura.css" />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <my-app></my-app>
-    <div class="api-key-container">
-      <label for="api-key">API Key:</label>
-      <input type="password" id="api-key" />
-      <button id="toggle-api-key">Show Key</button>
-    </div>
-    <div class="groq-api-key-container">
-      <label for="groq-api-key">GROQ API Key:</label>
-      <input type="password" id="groq-api-key" />
-      <button id="toggle-groq-api-key">Show Key</button>
-    </div>
-    <footer></footer>
-    <!-- <script
+
+<head>
+  <link rel="stylesheet" href="sakura.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <my-app></my-app>
+  <div class="api-key-container">
+    <label for="api-key">OPENAI API Key (GPT-4o):</label>
+    <input type="password" id="api-key" />
+    <button id="toggle-api-key">Show Key</button>
+  </div>
+  <div class="groq-api-key-container">
+    <label for="groq-api-key">GROQ API Key (Llama 3.1 8B):</label>
+    <input type="password" id="groq-api-key" />
+    <button id="toggle-groq-api-key">Show Key</button>
+  </div>
+  <footer></footer>
+  <!-- <script
       src=""
       crossorigin="anonymous"
     ></script> -->
-    <script src="script.ts" type="module"></script>
-  </body>
+  <script src="script.ts" type="module"></script>
+</body>
+
 </html>

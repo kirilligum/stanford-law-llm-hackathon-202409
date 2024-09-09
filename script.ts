@@ -49,6 +49,8 @@ async function callChatGPT(text, system = SYSTEM) {
   return data.choices[0].message.content;
 }
 
+let groqApiKeyInput: HTMLInputElement;
+
 async function getGroqChatCompletion(text, system) {
   const groq = new Groq({ apiKey: groqApiKeyInput.value });
   return groq.chat.completions.create({
@@ -105,6 +107,7 @@ async function main() {
   const replacementsText = document.getElementById('text-replacements');
 
   apiKeyInput = document.getElementById('api-key') as HTMLInputElement;
+  groqApiKeyInput = document.getElementById('groq-api-key') as HTMLInputElement;
   const toggleApiKeyButton = document.getElementById('toggle-api-key');
   const groqApiKeyInput = document.getElementById('groq-api-key') as HTMLInputElement;
   const toggleGroqApiKeyButton = document.getElementById('toggle-groq-api-key');

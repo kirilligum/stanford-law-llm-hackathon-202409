@@ -22,6 +22,8 @@ const SYSTEM2 = {
     'Give answer to the questions using the provided text. Treat redacted information (like Male_1 or Location_2) as a valid information.',
 };
 
+let apiKeyInput: HTMLInputElement;
+
 async function callChatGPT(text, system = SYSTEM) {
   const request = await fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
@@ -101,7 +103,7 @@ async function main() {
   const afterText2 = document.getElementById('text-after-2');
   const replacementsText = document.getElementById('text-replacements');
 
-  const apiKeyInput = document.getElementById('api-key') as HTMLInputElement;
+  apiKeyInput = document.getElementById('api-key') as HTMLInputElement;
   const toggleApiKeyButton = document.getElementById('toggle-api-key');
   const groqApiKeyInput = document.getElementById('groq-api-key') as HTMLInputElement;
   const toggleGroqApiKeyButton = document.getElementById('toggle-groq-api-key');

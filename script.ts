@@ -49,22 +49,23 @@ async function callChatGPT(text, system = SYSTEM) {
   return data.choices[0].message.content;
 }
 
-async function getGroqChatCompletion() {
+async function getGroqChatCompletion(text, system) {
   const groq = new Groq({ apiKey: groqApiKeyInput.value });
   return groq.chat.completions.create({
     messages: [
+      system,
       {
-        role: "user",
-        content: "Explain the importance of fast language models",
+        role: 'user',
+        content: text,
       },
     ],
     model: "llama3-8b-8192",
   });
 }
 
-async function mainGroq() {
-  const chatCompletion = await getGroqChatCompletion();
-  console.log(chatCompletion.choices[0]?.message?.content || "");
+async function mainGroq(text, system = SYSTEM) {
+  const chatCompletion = await getGroqChatCompletion(text, system);
+  return chatCompletion.choices[0]?.message?.content || "";
 }
 
 async function callLlama(text) {
@@ -352,7 +353,8 @@ export class MyApp extends LitElement {
     try {
       anonymizeButton.textContent = 'Working...';
       const text = beforeText.value;
-      const anonymized = await callChatGPT(text);
+      // const anonymized = await callChatGPT(text);
+      const anonymized = await mainGroq(text);
       // const anonymized = await callLlama(text);
 
       const [altered, table] = anonymized.split('REPLACEMENT_TABLE');

@@ -159,7 +159,7 @@ You are given a content_text where personal information (PII) such as names, loc
      - Original: "The laptop was purchased for $1,200."  
      - Pseudonym: "The laptop was purchased for approximately $1,320."
    - Negative Example 1:  
-     - Original: "The project cost $1,000,000."  
+     - Original: "The project cost 1000 000."  
      - Incorrect Pseudonym: "The project cost $1,000,000."
      - Explanation: The pseudonym is incorrect because it does not alter the original amount by 10-20%.
      - Corrected Pseudonym: "The project cost approximately $1,100,000."
@@ -179,12 +179,12 @@ You are given a content_text where personal information (PII) such as names, loc
      - Explanation: The pseudonym is incorrect because it does not alter the original amount by 10-20%.
      - Corrected Pseudonym: "The company's revenue was approximately $5,500,000 last year."
    - Negative Example 5:  
-     - Original: "He invested $10,000 in the stock market."  
+     - Original: "He invested 10k in the stock market."  
      - Incorrect Pseudonym: "He invested $13,000 in the stock market."
      - Explanation: The pseudonym is incorrect because the change exceeds the 10-20% range.
      - Corrected Pseudonym: "He invested approximately $11,000 in the stock market."
    - Negative Example 6:  
-     - Original: "The budget was set at $2,000,000."  
+     - Original: "The budget was set at 2000k."  
      - Incorrect Pseudonym: "The budget was set at $2,000."
      - Explanation: The pseudonym is incorrect because it misses zeros, drastically altering the amount.
      - Corrected Pseudonym: "The budget was set at approximately $2,200,000."

@@ -1,0 +1,132 @@
+html {
+  /* font-size: 100%; */
+
+  body {
+    max-width: 60em;
+  }
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+
+  main {
+    overflow-y: auto;
+
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    .actions {
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    textarea {
+      flex: 1;
+    }
+  }
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  box-sizing: border-box;
+
+  textarea {
+    flex: 1;
+  }
+
+  #text-replacements {
+    flex: 0.5;
+    font-size: 12px;
+  }
+
+  #text-after-2 {
+    flex: 1;
+    padding: 6px 10px;
+    background-color: #4a4a4a;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    white-space: pre-line;
+    overflow-y: auto;
+
+    .r {
+      color: chartreuse;
+    }
+  }
+
+  #text-replacements {
+    overflow-y: auto;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+    button {
+      min-width: 100px;
+    }
+  }
+
+  section {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+  }
+
+  aside {
+    flex: 1;
+  }
+
+  main {
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  #text-after-2 {
+    font-family: monospace;
+    font-size: 13.333px;
+  }
+
+  #text-replacements {
+    overflow-y: auto;
+  }
+
+  aside {
+    overflow-y: auto;
+  }
+
+  my-app {
+    display: contents;
+  }
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  height: 60px;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 20px;
+
+  img {
+    aspect-ratio: 1;
+    height: 60px;
+    margin-bottom: 0;
+  }
+
+  div {
+    font-size: 40px;
+    font-weight: 800;
+  }
+}
+
+[hidden] {
+  display: none !important;
+}
